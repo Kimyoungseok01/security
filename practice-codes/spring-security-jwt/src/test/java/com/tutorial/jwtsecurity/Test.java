@@ -5,7 +5,10 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import java.security.Key;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
 
 public class Test {
@@ -28,5 +31,14 @@ public class Test {
     } catch (ExpiredJwtException e) {
       return e.getClaims();
     }
+  }
+
+  @org.junit.jupiter.api.Test
+   void test1(){
+    UsernamePasswordAuthenticationToken df = new UsernamePasswordAuthenticationToken("test01@test.net","$2a$10$zXcogG/VjYM5i1vIsONtsOjaKHOraHv6MJkddTvtLk.kJ0sQ1MRUy");
+    System.out.println("df = " + df);
+    AuthenticationManagerBuilder authenticationManagerBuilder = null;
+    Authentication authentication = authenticationManagerBuilder.getObject().authenticate(df);
+    System.out.println("authentication = " + authentication);
   }
 }

@@ -75,13 +75,17 @@ public class TokenProvider {
         if (claims.get(AUTHORITIES_KEY) == null) {
             throw new RuntimeException("권한 정보가 없는 토큰입니다.");
         }
-
+        String[] claims1 = claims.get(AUTHORITIES_KEY).toString().split(",");
+        for(String test:claims1){
+            System.out.println("test = " + test);
+        }
+        System.out.println("claims.getSubject() = " + claims.getSubject());
         // 클레임에서 권한 정보 가져오기
         Collection<? extends GrantedAuthority> authorities =
                 Arrays.stream(claims.get(AUTHORITIES_KEY).toString().split(","))
                         .map(SimpleGrantedAuthority::new)
                         .collect(Collectors.toList());
-
+        System.out.println("authorities = " + authorities);
         // UserDetails 객체를 만들어서 Authentication 리턴
         UserDetails principal = new User(claims.getSubject(), "", authorities);
 
