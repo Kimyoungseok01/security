@@ -6,6 +6,7 @@ import javax.persistence.*;
 
 @Getter
 @NoArgsConstructor
+@ToString
 @Table(name = "member")
 @Entity
 public class Member {

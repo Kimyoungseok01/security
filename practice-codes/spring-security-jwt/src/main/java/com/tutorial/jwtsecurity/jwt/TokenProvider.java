@@ -1,5 +1,7 @@
 package com.tutorial.jwtsecurity.jwt;
 
+import com.tutorial.jwtsecurity.Exception.ErrorCode;
+import com.tutorial.jwtsecurity.Exception.TempJwtException;
 import com.tutorial.jwtsecurity.controller.dto.TokenDto;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
@@ -72,17 +74,18 @@ public class TokenProvider {
         // 토큰 복호화
         Claims claims = parseClaims(accessToken);
 
+        //권한 넣지않아 우선 돌지않음
         if (claims.get(AUTHORITIES_KEY) == null) {
             throw new RuntimeException("권한 정보가 없는 토큰입니다.");
         }
-        String[] claims1 = claims.get(AUTHORITIES_KEY).toString().split(",");
+/*        String[] claims1 = claims.get(AUTHORITIES_KEY).toString().split(",");
         for(String test:claims1){
             System.out.println("test = " + test);
         }
-        System.out.println("claims.getSubject() = " + claims.getSubject());
+        System.out.println("claims.getSubject() = " + claims.getSubject());*/
         // 클레임에서 권한 정보 가져오기
         Collection<? extends GrantedAuthority> authorities =
-                Arrays.stream(claims.get(AUTHORITIES_KEY).toString().split(","))
+                Arrays.stream(claims.get(AUTHORITIES_KEY).toString().split(",")) // 권한정보 가저옴
                         .map(SimpleGrantedAuthority::new)
                         .collect(Collectors.toList());
         System.out.println("authorities = " + authorities);
@@ -92,22 +95,42 @@ public class TokenProvider {
         return new UsernamePasswordAuthenticationToken(principal, "", authorities);
     } // SecurityContext 가 Authentication 객체를 저장하기 때문에 UsernamePasswordAuthenticationToken 형태로 리턴
 
+//    public boolean validateToken(String token) {
+//        try {
+//            Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
+//            return true;
+//        } catch (io.jsonwebtoken.security.SecurityException | MalformedJwtException e) {
+//            log.info("잘못된 JWT 서명입니다.");
+//        } catch (ExpiredJwtException e) {
+//            log.info("만료된 JWT 토큰입니다.");
+//        } catch (UnsupportedJwtException e) {
+//            log.info("지원되지 않는 JWT 토큰입니다.");
+//        } catch (IllegalArgumentException e) {
+//            log.info("JWT 토큰이 잘못되었습니다.");
+//        }
+//        return false;
+//    }
     //============================== 토큰 검증 =====================================
-    public boolean validateToken(String token) {
+    public boolean validateToken(String token)throws TempJwtException {
         try {
             Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
             return true;
         } catch (io.jsonwebtoken.security.SecurityException | MalformedJwtException e) {
             log.info("잘못된 JWT 서명입니다.");
+            throw new TempJwtException(ErrorCode.WRONG_TYPE_TOKEN.getMessage()+"refresh", ErrorCode.WRONG_TYPE_TOKEN);
         } catch (ExpiredJwtException e) {
             log.info("만료된 JWT 토큰입니다.");
+            throw new TempJwtException(ErrorCode.EXPIRED_TOKEN.getMessage(), ErrorCode.EXPIRED_TOKEN);
         } catch (UnsupportedJwtException e) {
             log.info("지원되지 않는 JWT 토큰입니다.");
+            throw new TempJwtException(ErrorCode.UNSUPPORTED_TOKEN.getMessage(), ErrorCode.UNSUPPORTED_TOKEN);
         } catch (IllegalArgumentException e) {
             log.info("JWT 토큰이 잘못되었습니다.");
+            throw new TempJwtException(ErrorCode.WRONG_TOKEN.getMessage(), ErrorCode.WRONG_TOKEN);
         }
-        return false;
     }
+
+
 
     private Claims parseClaims(String accessToken) {
         try {

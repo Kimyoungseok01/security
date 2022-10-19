@@ -1,5 +1,9 @@
 package com.tutorial.jwtsecurity.service;
 
+import com.tutorial.jwtsecurity.Exception.CommonRuntimeException;
+import com.tutorial.jwtsecurity.Exception.ErrorCode;
+import com.tutorial.jwtsecurity.Exception.NotFoundUsernameException;
+import com.tutorial.jwtsecurity.Exception.TempJwtException;
 import com.tutorial.jwtsecurity.controller.dto.MemberRequestDto;
 import com.tutorial.jwtsecurity.controller.dto.MemberResponseDto;
 import com.tutorial.jwtsecurity.controller.dto.TokenRequestDto;
@@ -31,7 +35,7 @@ public class AuthService {
     @Transactional
     public MemberResponseDto signup(MemberRequestDto memberRequestDto) {
         if (memberRepository.existsByEmail(memberRequestDto.getEmail())) {
-            throw new RuntimeException("이미 가입되어 있는 유저입니다");
+            throw new CommonRuntimeException(ErrorCode.EXIST_USER.getMessage(), ErrorCode.EXIST_USER);
         }
 
         Member member = memberRequestDto.toMember(passwordEncoder);
@@ -65,21 +69,28 @@ public class AuthService {
 
     @Transactional
     public TokenDto reissue(TokenRequestDto tokenRequestDto) {
-        // 1. Refresh Token 검증
-        if (!tokenProvider.validateToken(tokenRequestDto.getRefreshToken())) {
-            throw new RuntimeException("Refresh Token 이 유효하지 않습니다.");
+//        if (!tokenProvider.validateToken(tokenRequestDto.getRefreshToken())) {
+//            throw new RuntimeException("Refresh Token 이 유효하지 않습니다.");
+//        }
+        // 1.Refresh Token 검증
+        // access Token 검증시에 예외를 던져버림
+        try {
+            tokenProvider.validateToken(tokenRequestDto.getRefreshToken());
+        }catch (TempJwtException e){
+            throw new CommonRuntimeException(e.getMessage(),e.getErrorCode());
         }
 
         // 2. Access Token 에서 Member ID 가져오기
         Authentication authentication = tokenProvider.getAuthentication(tokenRequestDto.getAccessToken());
 
         // 3. 저장소에서 Member ID 를 기반으로 Refresh Token 값 가져옴
+        //우선 로그아웃 기능 추가 안할거라 상관없
         RefreshToken refreshToken = refreshTokenRepository.findByKey(authentication.getName())
                 .orElseThrow(() -> new RuntimeException("로그아웃 된 사용자입니다."));
 
         // 4. Refresh Token 일치하는지 검사
         if (!refreshToken.getValue().equals(tokenRequestDto.getRefreshToken())) {
-            throw new RuntimeException("토큰의 유저 정보가 일치하지 않습니다.");
+            throw new CommonRuntimeException(ErrorCode.NOTEQUAL_TOKEN.getMessage(), ErrorCode.NOTEQUAL_TOKEN);
         }
 
         // 5. 새로운 토큰 생성

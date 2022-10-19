@@ -1,6 +1,13 @@
 package com.tutorial.jwtsecurity.jwt;
 
+import com.tutorial.jwtsecurity.Exception.ErrorCode;
+import com.tutorial.jwtsecurity.Exception.TempJwtException;
+import com.tutorial.jwtsecurity.entity.Member;
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.MalformedJwtException;
+import io.jsonwebtoken.UnsupportedJwtException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.StringUtils;
@@ -13,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @RequiredArgsConstructor
+@Slf4j
 public class JwtFilter extends OncePerRequestFilter {
     //================ Spring Request 앞단에 붙힌 커스텀필터
     public static final String AUTHORIZATION_HEADER = "Authorization";
@@ -27,14 +35,26 @@ public class JwtFilter extends OncePerRequestFilter {
 
         // 1. Request Header 에서 토큰을 꺼냄
         String jwt = resolveToken(request);
-
-        // 2. validateToken 으로 토큰 유효성 검사
-        // 정상 토큰이면 해당 토큰으로 Authentication 을 가져와서 SecurityContext 에 저장
-        if (StringUtils.hasText(jwt) && tokenProvider.validateToken(jwt)) {
-            Authentication authentication = tokenProvider.getAuthentication(jwt);
-            SecurityContextHolder.getContext().setAuthentication(authentication);
+        try {
+            // 2. validateToken 으로 토큰 유효성 검사
+            // 정상 토큰이면 해당 토큰으로 Authentication 을 가져와서 SecurityContext 에 저장
+            if (StringUtils.hasText(jwt) && tokenProvider.validateToken(jwt)) {
+                Authentication authentication = tokenProvider.getAuthentication(jwt);
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+            }
+        } catch (TempJwtException e){
+            request.setAttribute("errorCode",e.getErrorCode());
+        } catch (Exception e){
+            log.error("================================================");
+            log.error("JwtFilter - doFilterInternal() 오류발생");
+            log.error("token : {}", jwt);
+            log.error("Exception Message : {}", e.getMessage());
+            log.error("Exception StackTrace : {");
+            e.printStackTrace();
+            log.error("}");
+            log.error("================================================");
+            request.setAttribute("errorCode", e.getMessage());
         }
-
         filterChain.doFilter(request, response);
     }
 

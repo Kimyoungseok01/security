@@ -1,5 +1,7 @@
 package com.tutorial.jwtsecurity.service;
 
+import com.tutorial.jwtsecurity.Exception.ErrorCode;
+import com.tutorial.jwtsecurity.Exception.NotFoundUsernameException;
 import com.tutorial.jwtsecurity.controller.dto.MemberResponseDto;
 import com.tutorial.jwtsecurity.repository.MemberRepository;
 import com.tutorial.jwtsecurity.util.SecurityUtil;
@@ -16,7 +18,7 @@ public class MemberService {
     public MemberResponseDto getMemberInfo(String email) {
         return memberRepository.findByEmail(email)
                 .map(MemberResponseDto::of)
-                .orElseThrow(() -> new RuntimeException("유저 정보가 없습니다."));
+                .orElseThrow(() -> new NotFoundUsernameException(ErrorCode.UNAUTHORIZED.getMessage(), ErrorCode.UNAUTHORIZED));
     }
 
     // 현재 SecurityContext 에 있는 유저 정보 가져오기
