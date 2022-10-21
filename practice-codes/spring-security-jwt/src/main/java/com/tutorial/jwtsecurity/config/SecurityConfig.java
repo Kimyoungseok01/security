@@ -3,6 +3,7 @@ package com.tutorial.jwtsecurity.config;
 import com.tutorial.jwtsecurity.jwt.JwtAccessDeniedHandler;
 import com.tutorial.jwtsecurity.jwt.JwtAuthenticationEntryPoint;
 import com.tutorial.jwtsecurity.jwt.TokenProvider;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -10,8 +11,10 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import springfox.documentation.service.ApiKey;
 
 @EnableWebSecurity
 @RequiredArgsConstructor
@@ -26,11 +29,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+    private static final String[] PERMIT_URL_ARRAY = {
+        /* swagger v2 */
+        "/v2/api-docs",
+        "/swagger-resources",
+        "/swagger-resources/**",
+        "/configuration/ui",
+        "/configuration/security",
+        "/swagger-ui.html",
+        "/webjars/**",
+        /* swagger v3 */
+        "/v3/api-docs/**",
+        "/swagger-ui/**"
+    };
     // h2 database 테스트가 원활하도록 관련 API 들은 전부 무시
     @Override
     public void configure(WebSecurity web) {
         web.ignoring()
-            .antMatchers("/h2-console/**", "/favicon.ico");
+            .antMatchers("/h2-console/**", "/favicon.ico")
+            .antMatchers(PERMIT_URL_ARRAY);
     }
 
     @Override
@@ -58,13 +75,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             // 로그인, 회원가입 API 는 토큰이 없는 상태에서 요청이 들어오기 때문에 permitAll 설정
             .and()
             .authorizeRequests()
-            .antMatchers("/auth/**").permitAll()
+            .antMatchers("/auth/**","/v2/api-docs?group=V1").permitAll()
+            .antMatchers(PERMIT_URL_ARRAY).permitAll()
             .anyRequest().authenticated()   // 나머지 API 는 전부 인증 필요
 
             // JwtFilter 를 addFilterBefore 로 등록했던 JwtSecurityConfig 클래스를 적용
             .and()
             .apply(new JwtSecurityConfig(tokenProvider));
     }
+
+
 
     
 }

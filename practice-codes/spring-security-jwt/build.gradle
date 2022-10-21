@@ -23,21 +23,24 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compileOnly 'org.projectlombok:lombok'
-//	runtimeOnly 'com.h2database:h2'
-//	runtimeOnly 'mysql:mysql-connector-java'
-	implementation 'mysql:mysql-connector-java:8.0.21'
+	implementation 'mysql:mysql-connector-java:8.0.30'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 
-//	compile group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.2'
-//	runtime group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.2'
-//	runtime group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.2'
 	implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.2'
 	implementation group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.2'
 	implementation group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.2'
 
 	implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+
+	// Swagger2 gradle
+	implementation (group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'){
+		exclude module: 'swagger-annotations' exclude module: 'swagger-models'
+	}
+	implementation 'io.swagger:swagger-annotations:1.6.8'
+	implementation 'io.swagger:swagger-models:1.6.8'
+	implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
 }
 
 test {
