@@ -1,5 +1,6 @@
 package com.tutorial.jwtsecurity.service;
 
+import com.tutorial.jwtsecurity.Exception.CommonRuntimeException;
 import com.tutorial.jwtsecurity.Exception.ErrorCode;
 import com.tutorial.jwtsecurity.Exception.NotFoundUsernameException;
 import com.tutorial.jwtsecurity.controller.dto.MemberResponseDto;
@@ -26,6 +27,6 @@ public class MemberService {
     public MemberResponseDto getMyInfo() {
         return memberRepository.findById(SecurityUtil.getCurrentMemberId())
                 .map(MemberResponseDto::of)
-                .orElseThrow(() -> new RuntimeException("로그인 유저 정보가 없습니다."));
+                .orElseThrow(() -> new CommonRuntimeException(ErrorCode.UNAUTHORIZED.getMessage(), ErrorCode.UNAUTHORIZED));
     }
 }

@@ -3,6 +3,7 @@ package com.tutorial.jwtsecurity.jwt;
 import com.tutorial.jwtsecurity.Exception.ErrorCode;
 import com.tutorial.jwtsecurity.Exception.TempJwtException;
 import com.tutorial.jwtsecurity.controller.dto.TokenDto;
+import com.tutorial.jwtsecurity.entity.Authority;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -70,6 +71,11 @@ public class TokenProvider {
                 .accessTokenExpiresIn(accessTokenExpiresIn.getTime())
                 .refreshToken(refreshToken)
                 .build();
+    }
+    public Authentication getBasicAuthentication(){
+        return new UsernamePasswordAuthenticationToken(
+            0,null,Collections.singletonList(new SimpleGrantedAuthority(Authority.UNAUTHORIZED.toString()))
+        );
     }
 
     public Authentication getAuthentication(String refreshToken)throws TempJwtException { //JWT 토큰을 복호화하여 토큰에 들어 있는 정보를 꺼냅니다.

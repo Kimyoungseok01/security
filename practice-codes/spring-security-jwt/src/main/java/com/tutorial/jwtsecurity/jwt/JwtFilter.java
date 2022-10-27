@@ -6,6 +6,8 @@ import com.tutorial.jwtsecurity.entity.Member;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.UnsupportedJwtException;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
@@ -24,8 +26,14 @@ import java.io.IOException;
 public class JwtFilter extends OncePerRequestFilter {
     //================ Spring Request 앞단에 붙힌 커스텀필터
     public static final String AUTHORIZATION_HEADER = "Authorization";
+
     public static final String BEARER_PREFIX = "Bearer ";
 
+    public static final String BASIC_PREFIX = "Basic ";
+
+    private static final String BASIC_AUTH_CLIENT_ID = "gangwondog";
+
+    private static final String BASIC_AUTH_CLIENT_SECRET = "gangwondog_diikanpp-9a0s-kkoa-aiikwnna900aa8c";
     private final TokenProvider tokenProvider;
 
     // 실제 필터링 로직은 doFilterInternal 에 들어감
@@ -34,30 +42,58 @@ public class JwtFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws IOException, ServletException {
 
         // 1. Request Header 에서 토큰을 꺼냄
-        String jwt = resolveToken(request);
-        try {
-            // 2. validateToken 으로 토큰 유효성 검사
-            // 정상 토큰이면 해당 토큰으로 Authentication 을 가져와서 SecurityContext 에 저장
-            if (StringUtils.hasText(jwt) && tokenProvider.validateToken(jwt)) {
-                Authentication authentication = tokenProvider.getAuthentication(jwt);
-                SecurityContextHolder.getContext().setAuthentication(authentication);
+        //String jwt = resolveToken(request);
+        String jwt = new String();
+        String tokenType = request.getHeader(AUTHORIZATION_HEADER);
+        //System.out.println("tokenType = " + tokenType);
+        if (StringUtils.hasText(tokenType) && tokenType.startsWith(BEARER_PREFIX)){
+            //System.out.println("토큰 값따라 찍히는 jwt");
+            try {
+                jwt = tokenType.substring(7);
+                //System.out.println("jwt = " + jwt);
+                // 2. validateToken 으로 토큰 유효성 검사
+                // 정상 토큰이면 해당 토큰으로 Authentication 을 가져와서 SecurityContext 에 저장
+                if (StringUtils.hasText(jwt) && tokenProvider.validateToken(jwt)) {
+                    Authentication authentication = tokenProvider.getAuthentication(jwt);
+                    //저장하는 로직
+                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                }
+            } catch (TempJwtException e){
+                request.setAttribute("errorCode",e.getErrorCode());
+            } catch (Exception e){
+                log.error("JwtFilter - doFilterInternal() 오류발생");
+                log.error("token : {}", jwt);
+                log.error("Exception Message : {}", e.getMessage());
+                e.printStackTrace();
+                request.setAttribute("errorCode", e.getMessage());
             }
-        } catch (TempJwtException e){
-            request.setAttribute("errorCode",e.getErrorCode());
-        } catch (Exception e){
-            log.error("================================================");
-            log.error("JwtFilter - doFilterInternal() 오류발생");
-            log.error("token : {}", jwt);
-            log.error("Exception Message : {}", e.getMessage());
-            log.error("Exception StackTrace : {");
-            e.printStackTrace();
-            log.error("}");
-            log.error("================================================");
-            request.setAttribute("errorCode", e.getMessage());
+        } else if (StringUtils.hasText(tokenType) && tokenType.startsWith(BASIC_PREFIX)) {
+            System.out.println("토큰 값따라 찍히는 basic");
+            try{
+                jwt = tokenType.substring(6);
+                System.out.println("jwt = " + jwt);
+                byte[] decodedToken = Base64.getDecoder().decode(jwt);
+                String decodeValue = new String(decodedToken, StandardCharsets.UTF_8);
+                String basicToken = BASIC_AUTH_CLIENT_ID + ":" + BASIC_AUTH_CLIENT_SECRET;
+                if (decodeValue.equals(basicToken)){
+                    Authentication authentication = tokenProvider.getBasicAuthentication();
+                    //저장하는 로직
+                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                } else if (!decodeValue.equals(basicToken)) {
+                    request.setAttribute("errorCode",ErrorCode.WRONG_BASIC_TOKEN);
+                }
+            }catch (Exception e){
+                log.error("JwtFilter - doFilterInternal() 오류발생");
+                log.error("token : {}", jwt);
+                log.error("Exception Message : {}", e.getMessage());
+                e.printStackTrace();
+                request.setAttribute("errorCode", e.getMessage());
+            }
         }
+
         filterChain.doFilter(request, response);
     }
-
+/*
     // Request Header 에서 토큰 정보를 꺼내오기
     private String resolveToken(HttpServletRequest request) {
         String bearerToken = request.getHeader(AUTHORIZATION_HEADER);
@@ -66,4 +102,14 @@ public class JwtFilter extends OncePerRequestFilter {
         }
         return null;
     }
+    private String resolveToken1(HttpServletRequest request) {
+        String bearerToken = request.getHeader(AUTHORIZATION_HEADER);
+        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith(BEARER_PREFIX)) {
+            return bearerToken.substring(7);
+        } else if (StringUtils.hasText(bearerToken) && bearerToken.startsWith(BASIC_PREFIX)) {
+            return bearerToken.substring(6);
+        }
+        return null;
+    }*/
+
 }

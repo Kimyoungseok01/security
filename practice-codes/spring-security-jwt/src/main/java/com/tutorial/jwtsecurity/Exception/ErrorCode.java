@@ -16,8 +16,9 @@ public enum ErrorCode {
   UNSUPPORTED_TOKEN(452,HttpStatus.UNAUTHORIZED,"지원되지 않는 JWT 토큰입니다."),
   WRONG_TOKEN(453,HttpStatus.UNAUTHORIZED,"JWT 토큰이 잘못되었습니다."),
   NOTEQUAL_TOKEN(454,HttpStatus.UNAUTHORIZED,"토큰의 유저 정보가 일치하지 않습니다."),
+  NEED_AUTHORITIES(455,HttpStatus.UNAUTHORIZED,"권한 정보가 없는 토큰 입니다."),
+  WRONG_BASIC_TOKEN(456,HttpStatus.UNAUTHORIZED,"Basic 토큰 정보가 잘못 되었습니다.");
 
-  NEED_AUTHORITIES(455,HttpStatus.UNAUTHORIZED,"권한 정보가 없는 토큰 입니다.");
 
 
   private Integer code;

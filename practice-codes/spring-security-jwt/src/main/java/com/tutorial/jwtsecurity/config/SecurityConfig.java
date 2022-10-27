@@ -29,9 +29,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+    //swagger 설정
     private static final String[] PERMIT_URL_ARRAY = {
         /* swagger v2 */
         "/v2/api-docs",
+        "/v2/api-docs?group=V1",
         "/swagger-resources",
         "/swagger-resources/**",
         "/configuration/ui",
@@ -40,7 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         "/webjars/**",
         /* swagger v3 */
         "/v3/api-docs/**",
-        "/swagger-ui/**"
+        "/swagger-ui/**",
     };
     // h2 database 테스트가 원활하도록 관련 API 들은 전부 무시
     @Override
@@ -54,7 +56,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
             // CSRF 설정 Disable
         http.csrf().disable()
-
+            .httpBasic().disable()
+            .formLogin().disable()
             // exception handling 할 때 우리가 만든 클래스를 추가
             .exceptionHandling()
             .authenticationEntryPoint(jwtAuthenticationEntryPoint)
@@ -75,7 +78,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             // 로그인, 회원가입 API 는 토큰이 없는 상태에서 요청이 들어오기 때문에 permitAll 설정
             .and()
             .authorizeRequests()
-            .antMatchers("/auth/**","/v2/api-docs?group=V1").permitAll()
+            //.antMatchers("/auth/**","/v2/api-docs?group=V1").permitAll()
+            //.antMatchers("/v2/api-docs?group=V1").permitAll()
             .antMatchers(PERMIT_URL_ARRAY).permitAll()
             .anyRequest().authenticated()   // 나머지 API 는 전부 인증 필요
 

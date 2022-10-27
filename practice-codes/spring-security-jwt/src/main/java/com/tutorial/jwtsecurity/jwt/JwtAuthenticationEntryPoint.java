@@ -39,6 +39,9 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
         } else if(errorCode == ErrorCode.UNSUPPORTED_TOKEN) {
             //지원되지 않는 토큰인 경우
             setResponse(response, ErrorCode.UNSUPPORTED_TOKEN);
+        } else if (errorCode == ErrorCode.WRONG_BASIC_TOKEN) {
+            //베이직 토큰이 잘못되었을 때
+            setResponse(response, ErrorCode.WRONG_BASIC_TOKEN);
         } else {
             setResponse(response, ErrorCode.WRONG_TOKEN);
         }
