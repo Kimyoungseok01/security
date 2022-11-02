@@ -1,11 +1,11 @@
 package com.tutorial.jwtsecurity.controller;
 
-import com.tutorial.jwtsecurity.controller.dto.MemberResponseDto;
-import com.tutorial.jwtsecurity.entity.ResponseJsonObject;
-import com.tutorial.jwtsecurity.service.MemberService;
+import com.tutorial.jwtsecurity.common.response.ResponseJsonObject;
+import com.tutorial.jwtsecurity.domain.user.MemberService;
+import com.tutorial.jwtsecurity.util.CommonUtil;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Bean;
-import org.springframework.http.HttpHeaders;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -39,6 +39,24 @@ public class MemberController {
             .data(memberService.getMemberInfo(email))
             .build();
         //return new ResponseEntity<>(response,response.getHttpStatus());
+        return ResponseEntity.ok()
+            .body(response);
+    }
+
+    @GetMapping("/page")
+    public ResponseEntity<ResponseJsonObject> getMemberPage(@RequestParam Integer page,@RequestParam Integer size,@RequestParam String sort,@RequestParam String email){
+        //Page<Member> results = memberService.getMemberPage(pageRequest, email);
+        PageRequest pageable = CommonUtil.pagable(page, size, sort);
+        if(pageable.getSort().isUnsorted()){
+            pageable = pageable.withSort(Sort.Direction.ASC, "email");
+        }
+
+        response = ResponseJsonObject.builder()
+            .code(HttpStatus.OK.value())
+            .httpStatus(HttpStatus.OK)
+            .message("페이지완료")
+            .data(memberService.getMemberPage(pageable, email))
+            .build();
         return ResponseEntity.ok()
             .body(response);
     }
