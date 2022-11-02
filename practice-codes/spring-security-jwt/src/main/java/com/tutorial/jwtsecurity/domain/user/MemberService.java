@@ -33,6 +33,9 @@ public class MemberService {
 
   public Page<Member> getMemberPage(PageRequest pageRequest, String email) {
         Page<Member> members = memberRepository.getMemberPage(pageRequest,email);
+        if(members.getContent().size() == 0 || members.getContent().get(0) == null){
+          throw new NotFoundUsernameException(ErrorCode.NO_DATA.getMessage(), ErrorCode.NO_DATA);
+        }
         return members;
   }
 }

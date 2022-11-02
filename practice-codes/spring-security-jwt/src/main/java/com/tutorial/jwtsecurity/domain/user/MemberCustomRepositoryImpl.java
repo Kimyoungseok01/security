@@ -3,7 +3,7 @@ package com.tutorial.jwtsecurity.domain.user;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import com.tutorial.jwtsecurity.entity.QMember;
+import com.tutorial.jwtsecurity.domain.user.QMember;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -12,8 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.support.PageableExecutionUtils;
 import org.springframework.stereotype.Repository;
-
-import static com.tutorial.jwtsecurity.entity.QMember.member;
+import static com.tutorial.jwtsecurity.domain.user.QMember.member;
 
 @Repository
 @RequiredArgsConstructor
@@ -23,6 +22,7 @@ public class MemberCustomRepositoryImpl implements MemberCustomRepository {
 
   @Override
   public Page<Member> getMemberPage(PageRequest pageable, String email) {
+
     List<Member> results = jpaQueryFactory
         .selectFrom(member)
         .where(member.email.contains(email))

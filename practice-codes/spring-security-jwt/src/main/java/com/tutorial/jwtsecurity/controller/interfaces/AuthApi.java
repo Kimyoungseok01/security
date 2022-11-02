@@ -19,7 +19,7 @@ public interface AuthApi {
   @PostMapping(value = "/signup")
   @ApiOperation(
       value = "회원가입",
-      notes = "/auth/signup",
+      notes = "url = /auth/signup",
       response = ResponseJsonObject.class,
       authorizations = @Authorization(value = "basic"))
   @ApiResponses(value = {
@@ -35,7 +35,7 @@ public interface AuthApi {
   @PostMapping("/login")
   @ApiOperation(
       value = "로그인 (토큰검증)",
-      notes = "/auth/login",
+      notes = "url = /auth/login",
       response = ResponseJsonObject.class,
       authorizations = @Authorization(value = "basic"))
   @ApiResponses(value = {
@@ -51,7 +51,7 @@ public interface AuthApi {
   @PostMapping("/reissue")
   @ApiOperation(
       value = "토큰 재발급",
-      notes = "/auth/reissue",
+      notes = "url = /auth/reissue",
       response = ResponseJsonObject.class,
       authorizations = @Authorization(value = "bearer"))
   @ApiResponses(value = {

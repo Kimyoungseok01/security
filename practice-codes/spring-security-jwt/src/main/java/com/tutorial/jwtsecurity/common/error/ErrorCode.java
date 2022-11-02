@@ -10,6 +10,7 @@ public enum ErrorCode {
 
   UNKNOWN_ERROR(1,HttpStatus.BAD_REQUEST,"알 수 없는 오류입니다"),
   EXIST_USER(2, HttpStatus.BAD_REQUEST,"이미 가입되어 있는 유저입니다."),
+  NO_DATA(3,HttpStatus.BAD_REQUEST,"데이터가 없습니다."),
   UNAUTHORIZED(401,HttpStatus.UNAUTHORIZED,"사용자를 찾을 수 없습니다."),
   WRONG_TYPE_TOKEN(450,HttpStatus.UNAUTHORIZED,"잘못된 JWT 서명입니다."),
   EXPIRED_TOKEN(451,HttpStatus.UNAUTHORIZED,"만료된 JWT 토큰입니다."),
