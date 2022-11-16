@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="91ceea6e-7a64-4f45-a9f7-4877777f6c96" name="변경" comment="">
+      <change afterPath="$PROJECT_DIR$/../gangwondog/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gangwondog/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gangwondog/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gangwondog/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gangwondog/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gangwondog/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gangwondog/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gangwondog/settings.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gangwondog/src/main/java/com/gangwondog/openAPI/common/error/ErrorCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gangwondog/src/main/java/com/gangwondog/openAPI/common/exception/CommonRuntimeException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gangwondog/src/main/java/com/gangwondog/openAPI/common/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gangwondog/src/main/java/com/gangwondog/openAPI/common/exception/NotFoundUsernameException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gangwondog/src/main/java/com/gangwondog/openAPI/common/exception/TempJwtException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gangwondog/src/main/java/com/gangwondog/openAPI/common/response/ResponseErrorObject.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gangwondog/src/main/java/com/gangwondog/openAPI/common/response/ResponseJsonObject.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gangwondog/src/main/java/com/gangwondog/openAPI/config/QueryDslConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gangwondog/src/main/java/com/gangwondog/openAPI/config/SwaggerConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gangwondog/src/main/java/com/gangwondog/openAPI/config/security/CustomUserDetailsService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gangwondog/src/main/java/com/gangwondog/openAPI/config/security/JwtAccessDeniedHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gangwondog/src/main/java/com/gangwondog/openAPI/config/security/JwtAuthenticationEntryPoint.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gangwondog/src/main/java/com/gangwondog/openAPI/config/security/JwtFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gangwondog/src/main/java/com/gangwondog/openAPI/config/security/JwtSecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gangwondog/src/main/java/com/gangwondog/openAPI/config/security/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gangwondog/src/main/java/com/gangwondog/openAPI/config/security/TokenDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gangwondog/src/main/java/com/gangwondog/openAPI/config/security/TokenProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gangwondog/src/main/java/com/gangwondog/openAPI/controller/LoginController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gangwondog/src/main/java/com/gangwondog/openAPI/controller/MemberController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gangwondog/src/main/java/com/gangwondog/openAPI/controller/interfaces/LoginApi.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gangwondog/src/main/java/com/gangwondog/openAPI/domain/code/CodeGroupEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gangwondog/src/main/java/com/gangwondog/openAPI/domain/code/CommonCodeEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gangwondog/src/main/java/com/gangwondog/openAPI/domain/file/FileDetailEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gangwondog/src/main/java/com/gangwondog/openAPI/domain/file/FileEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gangwondog/src/main/java/com/gangwondog/openAPI/domain/login/LoginCustomRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gangwondog/src/main/java/com/gangwondog/openAPI/domain/login/LoginCustomRepositoryImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gangwondog/src/main/java/com/gangwondog/openAPI/domain/login/LoginRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gangwondog/src/main/java/com/gangwondog/openAPI/domain/login/LoginService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gangwondog/src/main/java/com/gangwondog/openAPI/domain/login/TokenEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gangwondog/src/main/java/com/gangwondog/openAPI/domain/login/dto/MemberRequestDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gangwondog/src/main/java/com/gangwondog/openAPI/domain/login/dto/MemberResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gangwondog/src/main/java/com/gangwondog/openAPI/domain/place/PlaceEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gangwondog/src/main/java/com/gangwondog/openAPI/domain/place/ReviewEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gangwondog/src/main/java/com/gangwondog/openAPI/domain/place/VisitStampEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gangwondog/src/main/java/com/gangwondog/openAPI/domain/place/WishEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gangwondog/src/main/java/com/gangwondog/openAPI/domain/user/Authority.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gangwondog/src/main/java/com/gangwondog/openAPI/domain/user/UserEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gangwondog/src/main/java/com/gangwondog/openAPI/domain/user/UserEntityP.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gangwondog/src/main/java/com/gangwondog/openAPI/domain/user/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gangwondog/src/main/java/com/gangwondog/openAPI/util/CommonUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gangwondog/src/main/java/com/gangwondog/openAPI/util/SecurityUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gangwondog/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gangwondog/src/test/java/com/gangwondog/openAPI/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.idea/spring-security-jwt.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/gangwondog.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.jpb/persistence-units.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tutorial/jwtsecurity/JwtSecurityApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tutorial/jwtsecurity/common/error/ErrorCode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tutorial/jwtsecurity/common/exception/CommonRuntimeException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tutorial/jwtsecurity/common/exception/GlobalExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tutorial/jwtsecurity/common/exception/NotFoundUsernameException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tutorial/jwtsecurity/common/exception/TempJwtException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tutorial/jwtsecurity/common/response/ResponseErrorObject.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tutorial/jwtsecurity/common/response/ResponseJsonObject.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tutorial/jwtsecurity/config/QueryDslConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tutorial/jwtsecurity/config/SwaggerConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tutorial/jwtsecurity/config/security/CustomUserDetailsService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tutorial/jwtsecurity/config/security/JwtAccessDeniedHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tutorial/jwtsecurity/config/security/JwtAuthenticationEntryPoint.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tutorial/jwtsecurity/config/security/JwtFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tutorial/jwtsecurity/config/security/JwtSecurityConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tutorial/jwtsecurity/config/security/SecurityConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tutorial/jwtsecurity/config/security/TokenDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tutorial/jwtsecurity/config/security/TokenProvider.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tutorial/jwtsecurity/controller/AuthController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tutorial/jwtsecurity/controller/MemberController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tutorial/jwtsecurity/controller/interfaces/AuthApi.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tutorial/jwtsecurity/domain/user/AuthService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tutorial/jwtsecurity/domain/user/Authority.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tutorial/jwtsecurity/domain/user/Member.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tutorial/jwtsecurity/domain/user/MemberCustomRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tutorial/jwtsecurity/domain/user/MemberCustomRepositoryImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tutorial/jwtsecurity/domain/user/MemberRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tutorial/jwtsecurity/domain/user/MemberService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tutorial/jwtsecurity/domain/user/RefreshToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/../gangwondog/src/main/java/com/gangwondog/openAPI/domain/login/RefreshTokenEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tutorial/jwtsecurity/domain/user/RefreshTokenRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../gangwondog/src/main/java/com/gangwondog/openAPI/domain/login/RefreshTokenRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tutorial/jwtsecurity/domain/user/dto/MemberRequestDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tutorial/jwtsecurity/domain/user/dto/MemberResponseDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tutorial/jwtsecurity/domain/user/dto/TokenRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../gangwondog/src/main/java/com/gangwondog/openAPI/domain/login/dto/TokenRequestDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tutorial/jwtsecurity/util/CommonUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tutorial/jwtsecurity/util/SecurityUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/tutorial/jwtsecurity/JwtSecurityApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/tutorial/jwtsecurity/Test.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="jwt-security" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="jwt-security" type="f1a62948:ProjectNode" />
+                <item name="실행 구성" type="7b0102dc:RunConfigurationsNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="myId2FirstActivated">
+      <map>
+        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
+      </map>
+    </option>
+    <option name="myId2Visible">
+      <map>
+        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
+      </map>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2HcRqgJXMzTyNyP7WLGYBTuEMRD" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/gangwondog",
+    "project.structure.last.edited": "모듈",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
+    "spring.configuration.checksum": "691207b431b32f53e8baaa6c0dfb4d2e",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager" selected="Spring Boot.GangwondogApplication">
+    <configuration name="spring-security-jwt [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="spring-security-jwt [check]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="check" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="spring-security-jwt [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="spring-security-jwt [compileJava]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="compileJava" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="spring-security-jwt [compileQuerydslJava]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="compileQuerydslJava" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="GangwondogApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="jwt-security.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.gangwondog.openAPI.GangwondogApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.spring-security-jwt [check]" />
+        <item itemvalue="Gradle.spring-security-jwt [compileJava]" />
+        <item itemvalue="Gradle.spring-security-jwt [clean]" />
+        <item itemvalue="Gradle.spring-security-jwt [build]" />
+        <item itemvalue="Gradle.spring-security-jwt [compileQuerydslJava]" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="디폴트 작업">
+      <changelist id="91ceea6e-7a64-4f45-a9f7-4877777f6c96" name="변경" comment="" />
+      <created>1668582578248</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1668582578248</updated>
+      <workItem from="1668582579688" duration="832000" />
+      <workItem from="1668583439786" duration="576000" />
+      <workItem from="1668584923852" duration="68000" />
+      <workItem from="1668585005923" duration="67000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
